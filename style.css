@@ -1,0 +1,93 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+/* html,
+body {
+    height: 100%;
+} */
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* reset end */
+
+/* my css begins here */
+
+/* from design system */
+
+body {
+  font-family: 'Space Mono', monospace;
+
+  --blue: #0079FF;
+  --noresult: #F74646;
+
+  --background: #F6F8FF;
+  --box-background: #FEFEFE;
+  --title: #222731;
+  --heading: #2B3442;
+  --text: #4B6A9B;
+  --toggle-hover: #222731;
+
+  color: var(--text);
+}
+
+body.dark-mode {
+  --background: #141D2F;
+  --box-background: #1E2A47;
+  --title: white;
+  --heading: white;
+  --text: white;
+  --toggle-hover: #90A4D4
+}
+
+h1 {
+  color: var(--title);
+}
+
+.icon {
+  display: inline-block;
+}
