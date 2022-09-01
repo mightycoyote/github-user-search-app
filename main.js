@@ -6,16 +6,13 @@ import { Octokit } from "@octokit/rest";
 
 const searchBox = document.querySelector("#searchBox");
 const submitSearch = document.querySelector("#searchButton");
-const result = document.querySelector("output");
+const outputBox = document.querySelector("output");
 
-submitSearch.addEventListener('click', handleSubmit);
-
-function handleSubmit(e) {
-    e.preventDefault();
-    let query = e.target.form.searchBox.value;
-    console.log(query);
-    e.target.form.reset();
-}
+ const octokit = new Octokit({
+    // this is where you would add auth, but it's not necessary to retrieve this public info
+    // 'userAgent' is still required
+        userAgent: 'github-user-search-app Frontendmentor.io exercise',
+    })
 
 // error if response is 404
 const sampleResponse = {
@@ -24,8 +21,7 @@ const sampleResponse = {
         avatar_url: "./assets/Octocat.png",
         bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
         blog: "https://github.blog",
-        // not sure how this next one would be formatted, need to check. Probably just "github"
-        company: "@github",
+        company: "Github",
         created_at: "2020-07-08T13:46:57Z",
         followers: 3938,
         following: 9,
@@ -39,14 +35,37 @@ const sampleResponse = {
     }
 }
 
-// const octokit = new Octokit({
-//     // this is where you would add auth, but it's not necessary to retrieve this public info
-//     // 'userAgent' is still required
-//     userAgent: 'github-user-search-app',
-//   })
+async function fetchResponse(query) {
   
-// const response = await octokit.rest.users.getByUsername({
-//     username: 'mightycoyote',
-//   });
+    // Octokit seems to handle any JSON conversions by itself
+    // const response = await octokit.rest.users.getByUsername({
+    //     username: `${query}`,
+    // });
 
-// console.log(response);
+    const response = sampleResponse;
+
+    if (response.status === 404) {
+        displayNotfound();
+    }
+
+    if (response.status === 200) {
+        displayResponse(response);
+    }
+}
+
+function displayNotfound() {
+    console.log('This will make the red text appear in the box');
+}
+
+function displayResponse(response) {
+    document.querySelector('#searchForm').reset();
+    outputBox.innerHTML = `${response.data.login}`;
+}
+
+function handleSubmit(e) {
+    e.preventDefault();
+    let query = e.target.form.searchBox.value;
+    fetchResponse(query);
+}
+
+submitSearch.addEventListener('click', handleSubmit);

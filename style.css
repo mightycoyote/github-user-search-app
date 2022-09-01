@@ -84,8 +84,18 @@ body.dark-mode {
   --toggle-hover: #90A4D4
 }
 
+h1,
+h2 {
+  font-size: 1.625rem;
+  line-height: 2.375rem;
+}
+
 h1 {
   color: var(--title);
+}
+
+h2 {
+  color: var(--heading);
 }
 
 .icon {
