@@ -15,6 +15,8 @@ const outputBox = document.querySelector("output");
     })
 
 // error if response is 404
+// if bio is null it should say "This profile has no bio"
+// if others (like Twitter) are null it should say "Not Available"
 const sampleResponse = {
     status: 200,
     data: {
