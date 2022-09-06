@@ -19,8 +19,9 @@
     <h1>devfinder</h1>
 
     <!-- toggle darkmode -->
-    <div>
-      <span id="mode-label">Light</span><img class="icon" src="./assets/icon-moon.svg" alt="switch to darkmode">
+    <div class="mode-container">
+      <p class="mode-label">Light</p>
+      <img class="icon" src="./assets/icon-moon.svg" alt="switch to darkmode">
     </div>
   </header>
 
@@ -28,8 +29,10 @@
     <!-- search form -->
     <form id="search-form">
       <div class="form-container">
-        <input type="text" name="searchBox" id="searchBox" placeholder="Search GitHub username..." required>
-        <button id="searchButton">Search</button>
+        <img src="./assets/icon-search.svg" alt="search" class="icon">
+        <label for="search-box" class="visuallyhidden">Search github username</label>
+        <input type="text" name="search-box" id="search-box" placeholder="Search GitHub username..." required>
+        <button id="search-button">Search</button>
       </div>
     </form>
 
