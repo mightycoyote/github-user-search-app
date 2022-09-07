@@ -124,7 +124,7 @@ body {
 
   background-color: var(--background);
   color: var(--text);
-  font-size: var(--font-13);
+  font-size: clamp(var(--font-13), 1.5vw, var(--font-15));
   line-height: var(--font-25);
 }
 
@@ -152,8 +152,20 @@ h2,
   font-weight: bold;
 }
 
+h2 {
+  font-size: clamp(var(--font-16), 3vw, var(--font-26));
+  line-height: var(--font-38);
+}
+
+.bold-number {
+  font-size: clamp(var(--font-16, 2.5vw, var(--font-22)));
+  line-height: var(--font-33);
+}
+
 .login {
   color: var(--blue);
+  line-height: var(--font-24);
+  font-size: clamp(var(--font-13), 1.5vw, var(--font-16));
 }
 
 .mode-label {
@@ -164,7 +176,7 @@ h2,
 }
 
 .tiny-heading {
-  font-size: var(--font-11);
+  font-size: clamp(var(--font-11), 1vw, var(--font-13));
   line-height: var(--font-20);
 }
 
@@ -172,16 +184,14 @@ h2,
 
 header,
 main {
-  margin-left: 20px;
-  margin-right: 20px;
+  width: min(90vw, 572px);
+  margin: 1.5rem auto;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .form-container,
@@ -197,7 +207,8 @@ header {
   grid-template-columns: 20px auto 5.25rem;
   align-items: center;
   padding: 0 8px;
-  gap: 5px;
+  /* looks ok, check again when I've added largest screen size */
+  gap: clamp(5px, 1vw, 10px);
   height: 3.75rem;
 }
 
@@ -211,8 +222,10 @@ header {
 
 .avatar-and-info-grid {
   display: grid;
-  grid-template-columns: 70px auto;
-  gap: 20px;
+  grid-template-columns: clamp(70px, 20vw, 117px) auto;
+  /* looks ok, check again when I've added largest screen size */
+  gap: clamp(20px, 2.5vw, 40px);
+  align-items: center;
 }
 
 .bio,
@@ -233,6 +246,7 @@ header {
 .other-info-container {
   display: grid;
   gap: .5rem;
+  margin-bottom: 10px;
 }
 
 .other-info {
@@ -276,38 +290,18 @@ header {
 
 /* media queries */
 
-@media (min-width: 768px) {
-
-  body {
-    font-size: var(--font-15);
-  }
-
-  h2 {
-    font-size: var(--font-26);
-    line-height: var(--font-38);
-  }
-
-  .bold-number {
-    font-size: var(--font-22);
-    line-height: var(--font-33);
-  }
-
-  .login {
-    font-size: var(--font-16);
-    line-height: var(--font-24);
-  }
-
-  .tiny-heading {
-    font-size: var(--font-13);
-  }
-
-  .avatar-and-info-grid {
-    grid-template-columns: 117px auto;
-
-  }
+@media (min-width: 490px) {
 
   .stats-box {
     text-align: left;
   }
 
+  .other-info-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: column;
+  }
+
 }
+
+@media (min-width: 600px) {}
