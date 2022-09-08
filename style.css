@@ -102,6 +102,7 @@ body {
   --font-14: 0.875rem;
   --font-15: 0.9375rem;
   --font-16: 1rem;
+  --font-18: 1.125rem;
   --font-20: 1.25rem;
   --font-22: 1.375rem;
   --font-24: 1.5rem;
@@ -153,12 +154,12 @@ h2,
 }
 
 h2 {
-  font-size: clamp(var(--font-16), 3vw, var(--font-26));
+  font-size: clamp(var(--font-16), 3.5vw, var(--font-26));
   line-height: var(--font-38);
 }
 
 .bold-number {
-  font-size: clamp(var(--font-16, 2.5vw, var(--font-22)));
+  font-size: clamp(var(--font-16), 3vw, var(--font-22));
   line-height: var(--font-33);
 }
 
@@ -271,6 +272,7 @@ header {
 
 .icon {
   max-height: 20px;
+  place-self: center;
 }
 
 #avatar {
@@ -290,7 +292,22 @@ header {
 
 /* media queries */
 
-@media (min-width: 490px) {
+@media (min-width: 520px) {
+
+  #search-box {
+    font-size: var(--font-18);
+  }
+
+  .form-container {
+    grid-template-columns: 40px auto 6.625rem;
+    height: 4.3125rem;
+  }
+
+  #search-button {
+    width: 6.625rem;
+    height: 3.125rem;
+    font-size: var(--font-16);
+  }
 
   .stats-box {
     text-align: left;
