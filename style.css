@@ -279,6 +279,7 @@ header {
 .icon {
   max-height: 20px;
   place-self: center;
+  fill: var(--text);
 }
 
 #avatar {
@@ -299,9 +300,9 @@ header {
 .other-info {
   display: grid;
   grid-template-columns: 20px auto;
-  gap: .5rem;
+  gap: .8rem;
   align-items: center;
-  margin: 5px auto;
+  height: 2.5rem;
 }
 
 #search-button {
