@@ -119,8 +119,10 @@ body {
   --box-background: #FEFEFE;
   --title: #222731;
   --heading: #2B3442;
-  --text: #4B6A9B;
+  --text: hsl(217, 35%, 45%);
   --toggle-hover: #222731;
+  /* grayed-out "Not Available" for light and dark schemes are done on the comp by adding a white layer and are probably not accessible */
+  --not-available: hsl(217, 35%, 65%);
 
   --border-radius: 15px;
 
@@ -139,6 +141,7 @@ body.dark-mode {
   --text: white;
   --toggle-hover: #90A4D4;
   --shadow-elevation-medium: none;
+  --not-available: hsl(0, 0%, 50%);
 }
 
 /* typography */
@@ -193,6 +196,12 @@ a:hover {
   text-decoration: underline;
 }
 
+.no-results {
+  color: var(--noresult);
+  padding-right: 10px;
+  display: none;
+}
+
 /* layout containers and boxes */
 
 header,
@@ -231,10 +240,16 @@ header {
   color: inherit;
   caret-color: var(--blue);
   cursor: pointer;
+  flex-grow: 1;
 }
 
 #search-box::placeholder {
   color: var(--text);
+}
+
+.inner-search {
+  display: flex;
+  justify-content: space-between;
 }
 
 .response-container {
@@ -310,6 +325,11 @@ header {
   gap: .8rem;
   align-items: center;
   height: 2.5rem;
+}
+
+.other-info.not-available * {
+  color: var(--not-available);
+  fill: var(--not-available);
 }
 
 #search-button {

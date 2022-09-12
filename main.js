@@ -8,6 +8,7 @@ const searchForm = document.querySelector("#search-form");
 const searchBox = document.querySelector("#search-box");
 const submitSearch = document.querySelector("#search-button");
 const outputBox = document.querySelector("output");
+const noResults = document.querySelector(".no-results");
 
  const octokit = new Octokit({
     // this is where you would add auth, but it's not necessary to retrieve this public info
@@ -19,7 +20,7 @@ const outputBox = document.querySelector("output");
 // if bio is null it should say "This profile has no bio"
 // if others (like Twitter) are null it should say "Not Available"
 const sampleResponse = {
-    status: 200,
+    status: 404,
     data: {
         avatar_url: "./assets/Octocat.png",
         bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
@@ -48,7 +49,7 @@ async function fetchResponse(query) {
     const response = sampleResponse;
 
     if (response.status === 404) {
-        displayNotfound();
+        displayNotfound(query);
     }
 
     if (response.status === 200) {
@@ -56,12 +57,13 @@ async function fetchResponse(query) {
     }
 }
 
-function displayNotfound() {
-    console.log('This will make the red text appear in the box');
+function displayNotfound(query) {
+    noResults.style.display = 'block';
+    // the button should also be deactivated until the query is edited
 }
 
 function displayResponse(response) {
-    searchForm.reset();
+    
     outputBox.innerHTML = `${response.data.login}`;
 }
 

@@ -53,7 +53,11 @@
       <div class="form-container">
         <img src="./assets/icon-search.svg" alt="search" class="icon">
         <label for="search-box" class="visuallyhidden">Search github username</label>
-        <input type="text" name="searchterm" id="search-box" placeholder="Search GitHub username..." required>
+        <div class="inner-search">
+          <input type="text" name="searchterm" id="search-box" placeholder="Search GitHub username..." required>
+          <p class="no-results">No results</p>
+        </div>
+        <!-- <input type="text" name="searchterm" id="search-box" placeholder="Search GitHub username..." required> -->
         <button id="search-button">Search</button>
       </div>
     </form>
@@ -119,7 +123,7 @@
             </svg>
             <p class="other-info-text"><a href="">https://github.blog</a></p>
           </div>
-          <div class="other-info">
+          <div class="other-info not-available">
             <svg role="img" height="18" width="20" xmlns="http://www.w3.org/2000/svg">
               <title>twitter</title>
               <path class="icon"
