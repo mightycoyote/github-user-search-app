@@ -111,7 +111,8 @@ body {
   --font-33: 2.0625rem;
   --font-38: 2.375rem;
 
-  --blue: #0079FF;
+  --blue: #0077ff;
+  --blue-hover: #60ABFF;
   --noresult: #F74646;
 
   --background: #F6F8FF;
@@ -225,8 +226,11 @@ header {
 
 #search-box {
   border: none;
+  outline: none;
   background-color: inherit;
   color: inherit;
+  caret-color: var(--blue);
+  cursor: pointer;
 }
 
 #search-box::placeholder {
@@ -286,15 +290,18 @@ header {
   border-radius: 50%;
 }
 
-.mode-label {
-  display: inline-block;
-}
-
 .mode-container {
   display: grid;
   grid-template-columns: auto 20px;
   gap: .5rem;
   align-items: center;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.mode-container:hover * {
+  color: var(--toggle-hover);
+  fill: var(--toggle-hover);
 }
 
 .other-info {
@@ -314,6 +321,11 @@ header {
   height: 2.875rem;
   width: 5.25rem;
   font-weight: bold;
+  cursor: pointer;
+}
+
+#search-button:hover {
+  background-color: var(--blue-hover);
 }
 
 /* media queries */

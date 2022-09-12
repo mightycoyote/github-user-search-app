@@ -4,6 +4,7 @@ import './style.css'
 // Most solutioons to using octokit with Vite involve using a fetch other than 'node-fetch'
 import { Octokit } from "@octokit/rest";
 
+const searchForm = document.querySelector("#search-form");
 const searchBox = document.querySelector("#search-box");
 const submitSearch = document.querySelector("#search-button");
 const outputBox = document.querySelector("output");
@@ -60,13 +61,13 @@ function displayNotfound() {
 }
 
 function displayResponse(response) {
-    document.querySelector('#search-form').reset();
+    searchForm.reset();
     outputBox.innerHTML = `${response.data.login}`;
 }
 
 function handleSubmit(e) {
     e.preventDefault();
-    let query = e.target.form.searchBox.value;
+    let query = searchForm.searchterm.value;
     fetchResponse(query);
 }
 
