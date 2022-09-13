@@ -1,7 +1,7 @@
 import './style.css'
 // I used octokit/rest because I saw a comment suggesting it would be more compatible with Vite than other
 // forms of octokit, but I'm not sure it made any difference.
-// Most solutioons to using octokit with Vite involve using a fetch other than 'node-fetch'
+// Most solutioons to using octokit with Vite involve using a fetch other than 'node-fetch' in the package
 import { Octokit } from "@octokit/rest";
 
 const searchForm = document.querySelector("#search-form");
@@ -9,6 +9,18 @@ const searchBox = document.querySelector("#search-box");
 const submitSearch = document.querySelector("#search-button");
 const outputBox = document.querySelector("output");
 const noResults = document.querySelector(".no-results");
+const modeToggle = document.querySelector(".mode-container");
+
+const localPref = JSON.parse(localStorage.getItem('darkMode')); // boolean or null
+const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches; // boolean
+let darkMode = localPref ?? defaultDark; // boolean; if this evaluates to true, darkMode should be turned on
+
+
+// console.log(typeof(darkMode));
+// console.log(localPref);
+// console.log(defaultDark);
+// console.log(darkMode);
+
 
  const octokit = new Octokit({
     // this is where you would add auth, but it's not necessary to retrieve this public info
@@ -63,7 +75,6 @@ function displayNotfound(query) {
 }
 
 function displayResponse(response) {
-    
     outputBox.innerHTML = `${response.data.login}`;
 }
 
@@ -73,4 +84,27 @@ function handleSubmit(e) {
     fetchResponse(query);
 }
 
+// app saves a preference to localstorage only if you click the toggle
+function handleMode() {
+    if (!darkMode) {
+        document.body.classList.add('dark-mode');
+        modeToggle.classList.add('show-dark');
+        localStorage.setItem('darkMode', true);
+    } else if (darkMode) {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', false);
+    }
+    darkMode = !darkMode;
+}
+
+// this sets darkmode without saving it if it's found in the system preferences only
+function setDarkPref(darkMode) {
+    if (darkMode) {
+        document.body.classList.add('dark-mode');
+    } 
+}
+
 submitSearch.addEventListener('click', handleSubmit);
+modeToggle.addEventListener('click', handleMode);
+
+setDarkPref(darkMode);
