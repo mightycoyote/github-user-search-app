@@ -319,6 +319,23 @@ header {
   fill: var(--toggle-hover);
 }
 
+.mode-container.toggle-dark-version {
+  display: none;
+}
+
+.mode-container.toggle-light-version {
+  display: grid;
+}
+
+
+body.dark-mode .mode-container.toggle-dark-version {
+  display: grid;
+}
+
+body.dark-mode .mode-container.toggle-light-version {
+  display: none;
+}
+
 .other-info {
   display: grid;
   grid-template-columns: 20px auto;

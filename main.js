@@ -9,7 +9,8 @@ const searchBox = document.querySelector("#search-box");
 const submitSearch = document.querySelector("#search-button");
 const outputBox = document.querySelector("output");
 const noResults = document.querySelector(".no-results");
-const modeToggle = document.querySelector(".mode-container");
+// there are actually two of these, one for each color scheme
+const modeToggles = document.querySelectorAll(".mode-container");
 
 const localPref = JSON.parse(localStorage.getItem('darkMode')); // boolean or null
 const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches; // boolean
@@ -88,7 +89,6 @@ function handleSubmit(e) {
 function handleMode() {
     if (!darkMode) {
         document.body.classList.add('dark-mode');
-        modeToggle.classList.add('show-dark');
         localStorage.setItem('darkMode', true);
     } else if (darkMode) {
         document.body.classList.remove('dark-mode');
@@ -105,6 +105,6 @@ function setDarkPref(darkMode) {
 }
 
 submitSearch.addEventListener('click', handleSubmit);
-modeToggle.addEventListener('click', handleMode);
+modeToggles.forEach(toggle => toggle.addEventListener('click', handleMode));
 
 setDarkPref(darkMode);
