@@ -131,6 +131,7 @@ body {
   font-size: clamp(var(--font-13), 1.5vw, var(--font-15));
   line-height: var(--font-25);
   padding: 2rem 0 4rem;
+  min-width: 320px;
 }
 
 body.dark-mode {
@@ -250,6 +251,7 @@ header {
 .inner-search {
   display: flex;
   justify-content: space-between;
+  min-width: 150px;
 }
 
 .response-container {
@@ -267,11 +269,14 @@ header {
 
 .avatar {
   grid-area: avatar;
-  justify-self: center;
+  place-self: center;
+  min-width: 70px;
+  max-width: 117px;
 }
 
 .intro {
   grid-area: intro;
+  align-self: center;
 }
 
 .bio {
@@ -326,7 +331,6 @@ header {
 .mode-container.toggle-light-version {
   display: grid;
 }
-
 
 body.dark-mode .mode-container.toggle-dark-version {
   display: grid;
@@ -412,6 +416,10 @@ body.dark-mode .mode-container.toggle-light-version {
 
   .joined {
     line-height: var(--font-38);
+  }
+
+  .avatar {
+    align-self: start;
   }
 
 }

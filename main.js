@@ -1,4 +1,7 @@
 import './style.css'
+import { sampleResponse } from './sampleResponse';
+import { displayResponse } from './output';
+
 // I used octokit/rest because I saw a comment suggesting it would be more compatible with Vite than other
 // forms of octokit, but I'm not sure it made any difference.
 // Most solutioons to using octokit with Vite involve using a fetch other than 'node-fetch' in the package
@@ -7,7 +10,6 @@ import { Octokit } from "@octokit/rest";
 const searchForm = document.querySelector("#search-form");
 const searchBox = document.querySelector("#search-box");
 const submitSearch = document.querySelector("#search-button");
-const outputBox = document.querySelector("output");
 const noResults = document.querySelector(".no-results");
 // there are actually two of these, one for each color scheme
 const modeToggles = document.querySelectorAll(".mode-container");
@@ -17,40 +19,12 @@ const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches; /
 let darkMode = localPref ?? defaultDark; // boolean; if this evaluates to true, darkMode should be turned on
 
 
-// console.log(typeof(darkMode));
-// console.log(localPref);
-// console.log(defaultDark);
-// console.log(darkMode);
+const octokit = new Octokit({
+// this is where you would add auth, but it's not necessary to retrieve this public info
+// 'userAgent' is still required
+    userAgent: 'github-user-search-app Frontendmentor.io exercise',
+})
 
-
- const octokit = new Octokit({
-    // this is where you would add auth, but it's not necessary to retrieve this public info
-    // 'userAgent' is still required
-        userAgent: 'github-user-search-app Frontendmentor.io exercise',
-    })
-
-// error if response is 404
-// if bio is null it should say "This profile has no bio"
-// if others (like Twitter) are null it should say "Not Available"
-const sampleResponse = {
-    status: 404,
-    data: {
-        avatar_url: "./assets/Octocat.png",
-        bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
-        blog: "https://github.blog",
-        company: "Github",
-        created_at: "2020-07-08T13:46:57Z",
-        followers: 3938,
-        following: 9,
-        html_url: "https://github.com/octocat",
-        location: "San Francisco",
-        // note there's no @ preceding
-        login: "octocat",
-        name: "The Octocat",
-        public_repos: 8,
-        twitter_username: null,
-    }
-}
 
 async function fetchResponse(query) {
   
@@ -66,17 +40,13 @@ async function fetchResponse(query) {
     }
 
     if (response.status === 200) {
-        displayResponse(response);
+        displayResponse(response.data);
     }
 }
 
 function displayNotfound(query) {
     noResults.style.display = 'block';
     // the button should also be deactivated until the query is edited
-}
-
-function displayResponse(response) {
-    outputBox.innerHTML = `${response.data.login}`;
 }
 
 function handleSubmit(e) {
@@ -104,7 +74,7 @@ function setDarkPref(darkMode) {
     } 
 }
 
-submitSearch.addEventListener('click', handleSubmit);
+submitSearch.addEventListener('submit', handleSubmit);
 modeToggles.forEach(toggle => toggle.addEventListener('click', handleMode));
 
 setDarkPref(darkMode);
