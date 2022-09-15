@@ -4,8 +4,8 @@ const sampleResponse = {
     status: 200,
     data: {
         avatar_url: static_octocat,
-        // bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
-        bio: null,
+        bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
+        // bio: null,
         blog: "https://github.blog",
         company: "Github",
         created_at: "2020-07-08T13:46:57Z",
@@ -16,6 +16,7 @@ const sampleResponse = {
         following: 9,
         html_url: "https://github.com/octocat",
         location: "San Francisco",
+        // location: null,
         // note there's no @ preceding
         login: "testyoctocat",
         name: "The Testy Octocat",
@@ -24,6 +25,7 @@ const sampleResponse = {
     }
 }
 
+// this is from the GitHub docs for "Get a user" in REST API / Users
 const alternateSample = {
     "login": "octocat",
     "id": 1,
