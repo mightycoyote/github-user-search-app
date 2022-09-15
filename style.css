@@ -348,7 +348,8 @@ body.dark-mode .mode-container.toggle-light-version {
   height: 2.5rem;
 }
 
-.other-info.not-available * {
+.not-available,
+.not-available * {
   color: var(--not-available);
   fill: var(--not-available);
 }

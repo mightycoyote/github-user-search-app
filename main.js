@@ -74,7 +74,7 @@ function setDarkPref(darkMode) {
     } 
 }
 
-submitSearch.addEventListener('submit', handleSubmit);
+submitSearch.addEventListener('click', handleSubmit);
 modeToggles.forEach(toggle => toggle.addEventListener('click', handleMode));
 
 setDarkPref(darkMode);
