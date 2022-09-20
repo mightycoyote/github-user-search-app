@@ -4,7 +4,7 @@ import { displayResponse } from './output';
 
 // I used octokit/rest because I saw a comment suggesting it would be more compatible with Vite than other
 // forms of octokit, but I'm not sure it made any difference.
-// Most solutioons to using octokit with Vite involve using a fetch other than 'node-fetch' in the package
+// Most solutions to using octokit with Vite involve using a fetch other than 'node-fetch' in the package
 import { Octokit } from "@octokit/rest";
 
 const searchForm = document.querySelector("#search-form");
@@ -28,12 +28,15 @@ const octokit = new Octokit({
 
 async function fetchResponse(query) {
   
-    // Octokit seems to handle any JSON conversions by itself
+    
+    // Octokit includes default headers, don't need to add unless they need to be changed
     // const response = await octokit.rest.users.getByUsername({
     //     username: `${query}`,
     // });
-
+    
     const response = sampleResponse;
+    
+    
 
     if (response.status === 404) {
         displayNotfound(query);
@@ -42,17 +45,20 @@ async function fetchResponse(query) {
     if (response.status === 200) {
         displayResponse(response.data);
     }
-}
 
-function displayNotfound(query) {
-    noResults.style.display = 'block';
-    // the button should also be deactivated until the query is edited
+
 }
+    
+function displayNotfound(query) {
+        noResults.style.display = 'block';
+    }
+
 
 function handleSubmit(e) {
     e.preventDefault();
     let query = searchForm.searchterm.value;
     fetchResponse(query);
+    submitSearch.setAttribute("disabled", "");
 }
 
 // app saves a preference to localstorage only if you click the toggle
@@ -75,6 +81,10 @@ function setDarkPref(darkMode) {
 }
 
 submitSearch.addEventListener('click', handleSubmit);
+searchForm.addEventListener('input', () => { 
+    submitSearch.removeAttribute("disabled");
+    noResults.style.display = 'none';
+});
 modeToggles.forEach(toggle => toggle.addEventListener('click', handleMode));
 
 setDarkPref(darkMode);

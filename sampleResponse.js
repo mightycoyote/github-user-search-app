@@ -1,7 +1,7 @@
 import static_octocat from './assets/Octocat.png';
 
 const sampleResponse = {
-    status: 200,
+    status: 404,
     data: {
         avatar_url: static_octocat,
         bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",

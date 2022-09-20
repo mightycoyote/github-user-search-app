@@ -366,7 +366,8 @@ body.dark-mode .mode-container.toggle-light-version {
   cursor: pointer;
 }
 
-#search-button:hover {
+#search-button:hover,
+#search-button:disabled {
   background-color: var(--blue-hover);
 }
 
