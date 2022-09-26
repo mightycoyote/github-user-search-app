@@ -8,8 +8,9 @@ import { displayResponse } from './output';
 import { Octokit } from "@octokit/rest";
 
 const searchForm = document.querySelector("#search-form");
-const searchBox = document.querySelector("#search-box");
+// const searchBox = document.querySelector("#search-box");
 const submitSearch = document.querySelector("#search-button");
+const outputBox = document.querySelector("output");
 const noResults = document.querySelector(".no-results");
 // there are actually two of these, one for each color scheme
 const modeToggles = document.querySelectorAll(".mode-container");
@@ -25,37 +26,28 @@ const octokit = new Octokit({
     userAgent: 'github-user-search-app Frontendmentor.io exercise',
 })
 
-
 async function fetchResponse(query) {
-  
-    
+
+  // const response = sampleResponse;
+
+    try {
     // Octokit includes default headers, don't need to add unless they need to be changed
-    // const response = await octokit.rest.users.getByUsername({
-    //     username: `${query}`,
-    // });
-    
-    const response = sampleResponse;
-    
-    
+    const response = await octokit.rest.users.getByUsername({
+        username: `${query}`,
+    });
 
-    if (response.status === 404) {
-        displayNotfound(query);
+    displayResponse(response.data);
+
+    } catch (error) {
+        noResults.style.display = 'block';
+        outputBox.innerHTML = '';
+        console.log(`Error! Status: ${error.status}. Rate limit remaining: ${error.headers["x-ratelimit-remaining"]}. Message: ${error.response.data.message}.`)
     }
-
-    if (response.status === 200) {
-        displayResponse(response.data);
-    }
-
 
 }
-    
-function displayNotfound(query) {
-        noResults.style.display = 'block';
-    }
-
 
 function handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     let query = searchForm.searchterm.value;
     fetchResponse(query);
     submitSearch.setAttribute("disabled", "");

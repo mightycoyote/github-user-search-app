@@ -399,6 +399,10 @@ body.dark-mode .mode-container.toggle-light-version {
     columns: 2 auto;
   }
 
+  .info-columns>* {
+    overflow: hidden;
+  }
+
 }
 
 @media (min-width: 680px) {
