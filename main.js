@@ -41,16 +41,16 @@ async function fetchResponse(query) {
     } catch (error) {
         noResults.style.display = 'block';
         outputBox.innerHTML = '';
-        console.log(`Error! Status: ${error.status}. Rate limit remaining: ${error.headers["x-ratelimit-remaining"]}. Message: ${error.response.data.message}.`)
+        console.log(`Error! Status: ${error.status}. Rate limit remaining: ${error.response.headers["x-ratelimit-remaining"]}. Message: ${error.response.data.message}.`)
     }
 
 }
 
 function handleSubmit(e) {
-    // e.preventDefault();
     let query = searchForm.searchterm.value;
     fetchResponse(query);
     submitSearch.setAttribute("disabled", "");
+    e.preventDefault();
 }
 
 // app saves a preference to localstorage only if you click the toggle
@@ -72,7 +72,8 @@ function setDarkPref(darkMode) {
     } 
 }
 
-submitSearch.addEventListener('click', handleSubmit);
+
+searchForm.addEventListener('submit', handleSubmit);
 searchForm.addEventListener('input', () => { 
     submitSearch.removeAttribute("disabled");
     noResults.style.display = 'none';

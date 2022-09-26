@@ -121,8 +121,8 @@ body {
   --heading: #2B3442;
   --text: hsl(217, 35%, 45%);
   --toggle-hover: #222731;
-  /* grayed-out "Not Available" for light and dark schemes are done on the comp by adding a white layer and are probably not accessible */
-  --not-available: hsl(217, 35%, 65%);
+  /* grayed-out "Not Available" for light and dark schemes are done on the comp by adding a white layer (not exact colors), and do not look accessible */
+  --not-available: hsl(217, 35%, 60%);
 
   --border-radius: 15px;
 
