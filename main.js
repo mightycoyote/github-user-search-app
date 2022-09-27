@@ -81,3 +81,4 @@ searchForm.addEventListener('input', () => {
 modeToggles.forEach(toggle => toggle.addEventListener('click', handleMode));
 
 setDarkPref(darkMode);
+fetchResponse('octocat');
