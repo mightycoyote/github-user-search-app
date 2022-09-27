@@ -1,5 +1,5 @@
 import './style.css'
-import { sampleResponse } from './sampleResponse';
+// import { sampleResponse } from './sampleResponse';
 import { displayResponse } from './output';
 
 // I used octokit/rest because I saw a comment suggesting it would be more compatible with Vite than other
@@ -8,7 +8,6 @@ import { displayResponse } from './output';
 import { Octokit } from "@octokit/rest";
 
 const searchForm = document.querySelector("#search-form");
-// const searchBox = document.querySelector("#search-box");
 const submitSearch = document.querySelector("#search-button");
 const outputBox = document.querySelector("output");
 const noResults = document.querySelector(".no-results");
@@ -40,7 +39,6 @@ async function fetchResponse(query) {
 
     } catch (error) {
         noResults.style.display = 'block';
-        outputBox.innerHTML = '';
         console.log(`Error! Status: ${error.status}. Rate limit remaining: ${error.response.headers["x-ratelimit-remaining"]}. Message: ${error.response.data.message}.`)
     }
 
