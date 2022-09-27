@@ -72,7 +72,6 @@ function setDarkPref(darkMode) {
     } 
 }
 
-
 searchForm.addEventListener('submit', handleSubmit);
 searchForm.addEventListener('input', () => { 
     submitSearch.removeAttribute("disabled");
