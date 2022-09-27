@@ -6,4 +6,9 @@ export default {
         'node-fetch': 'isomorphic-fetch',
       },
     },
+    build: {
+      outDir: './docs/'
+    },
+    // put in the repo name, ex:
+    base: '/github-user-search-app/',
   };
