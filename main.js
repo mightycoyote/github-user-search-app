@@ -9,7 +9,6 @@ import { Octokit } from "@octokit/rest";
 
 const searchForm = document.querySelector("#search-form");
 const submitSearch = document.querySelector("#search-button");
-const outputBox = document.querySelector("output");
 const noResults = document.querySelector(".no-results");
 // there are actually two of these, one for each color scheme
 const modeToggles = document.querySelectorAll(".mode-container");

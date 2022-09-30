@@ -1,12 +1,9 @@
 import './style.css'
 const outputBox = document.querySelector("output");
-import { sampleResponse as response } from "./sampleResponse";
-
-
-// if bio is null it should say "This profile has no bio"
-// if others (like Twitter) are null it should say "Not Available"
+// import { sampleResponse as response } from "./sampleResponse";
 
 export function displayResponse(response) {
+    // to display the date from the API correctly, it has to be turned into a basic Date object, and then that is turned into a Intl.DateTimeFormat object later
     const date = new Date(response.created_at);
     outputBox.innerHTML = `
     <div class="response-container">

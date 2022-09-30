@@ -11,6 +11,7 @@ This is a solution to the [GitHub user search app challenge on Frontend Mentor](
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
 - [Author](#author)
 
 **Note: Delete this note and update the table of contents based on what sections you keep.**
@@ -30,7 +31,7 @@ Users should be able to:
 
 ### Screenshot
 
-[Screenshot](./assets/screenshot.jpg)
+![Screenshot](./assets/screenshot.jpg)
 
 ### Links
 
@@ -42,37 +43,58 @@ Users should be able to:
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
+- CSS custom properties (used heavily here to apply different colors in darkmode)
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
 - Vite
 - Octokit
+- CSS `prefers-color-scheme`
+- Localstorage (to check for, or, save a preference if you click the darkmode/lightmode toggle)
 - Josh W. Comeau's [Modern CSS Reset](https://www.joshwcomeau.com/css/custom-css-reset/) and [Shadow Palette Generator](https://www.joshwcomeau.com/shadow-palette/)
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+- The darkmode toggle switch in the design consists of an SVG and text together. In order to make the whole thing change color at once when any part of it was hovered, the style has to be applied at the component level instead of the individual pieces. `color` applies to text; `fill` applies to SVGs. (The color itself is given as a variable, and in fact the hover color that's applied is different in lightmode and darkmode.)
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
 ```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+.mode-container:hover * {
+  color: var(--toggle-hover);
+  fill: var(--toggle-hover);
 }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+- The icon and text within the toggle element also both change: it displays "light" and a sun when you're currently in darkmode, and "dark" and a moon when you're currently in lightmode, to indicate the other option that's available. To do this, there are two versions of the component in the HTML at the same time, with one of them always hidden using CSS classes and JavaScript. 
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+- I had never needed to do antyhing fancy with `grid-template-areas` before, but in this case, I found that the best way to change the page layout at the desktop breakpoint was to write the CSS to use the `grid-template-areas` property and then redefine it at that breakpoint.
+
+```css
+.response-container {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "avatar intro intro"
+    "bio bio bio"
+    "stats-box stats-box stats-box"
+    "info-columns info-columns info-columns";
+}
+/* vs */
+@media (min-width: 680px) {
+  .response-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "avatar intro intro intro"
+      "avatar bio bio bio"
+      "avatar stats-box stats-box stats-box"
+      "avatar info-columns info-columns info-columns";
+  }
+}
+```
+
+- Github provides dates in the ISO 8602 format (YYYY-MM-DDTHH:mm:ss.sssZ), which is easy for JavaScript to convert into a standard Date object. However, none of the methods on the standard Date object produce the format needed for the design. Rather than choosing one and editing/manipulating the string it produced, I looked for other solutions and found the `Intl.DateTimeFormat` object. With the right options on _that_ object (including `en-GB`), the app displays the "Joined" date correctly without any additional steps.
+
+### Useful resources
+
+[This reply to a date formatting question on Stack Overflow](https://stackoverflow.com/a/67715865) - All of the other proposed solutions to this question involve manipulating a string from some other format, but this answer shows an excellent example of how to use `Intl.DateTimeFormat` instead.
 
 ## Author
 
