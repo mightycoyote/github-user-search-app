@@ -48,8 +48,8 @@ Users should be able to:
 - Vanilla JavaScript
 - Vite
 - Octokit
-- CSS `prefers-color-scheme`
 - Localstorage (to check for, or, save a preference if you click the darkmode/lightmode toggle)
+- `prefers-color-scheme` if there's no locally saved preference
 - Josh W. Comeau's [Modern CSS Reset](https://www.joshwcomeau.com/css/custom-css-reset/) and [Shadow Palette Generator](https://www.joshwcomeau.com/shadow-palette/)
 
 ### What I learned
@@ -65,7 +65,7 @@ Users should be able to:
 
 - The icon and text within the toggle element also both change: it displays "light" and a sun when you're currently in darkmode, and "dark" and a moon when you're currently in lightmode, to indicate the other option that's available. To do this, there are two versions of the component in the HTML at the same time, with one of them always hidden using CSS classes and JavaScript. 
 
-- I had never needed to do antyhing fancy with `grid-template-areas` before, but in this case, I found that the best way to change the page layout at the desktop breakpoint was to write the CSS to use the `grid-template-areas` property and then redefine it at that breakpoint.
+- I had never needed to do much with `grid-template-areas` previously, but in this case, I found that the best way to change the page layout at the desktop breakpoint was to write the CSS to use the `grid-template-areas` property and then redefine it at that breakpoint.
 
 ```css
 .response-container {
@@ -93,7 +93,7 @@ Users should be able to:
 
 ### Useful resources
 
-[This reply to a date formatting question on Stack Overflow](https://stackoverflow.com/a/67715865) - All of the other proposed solutions to this question involve manipulating a string from some other format, but this answer shows an excellent example of how to use `Intl.DateTimeFormat` instead.
+[This reply to a date formatting question on Stack Overflow](https://stackoverflow.com/a/67715865) - All of the other proposed solutions to this question involve manipulating a string from some other format, but this answer is an excellent example of how to use `Intl.DateTimeFormat` instead.
 
 ## Author
 
