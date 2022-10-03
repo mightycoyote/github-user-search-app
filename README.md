@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Github user search app](https://mightycoyote.github.io/github-user-search-app/)
+- Solution: [Github user search with `prefers-color-scheme` and `localstorage`](https://www.frontendmentor.io/solutions/github-user-search-with-preferscolorscheme-and-localstorage-DRPNkwDYrK)
+- Live Site: [Github user search app](https://mightycoyote.github.io/github-user-search-app/)
 
 ## My process
 
