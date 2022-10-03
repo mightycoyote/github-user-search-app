@@ -1,5 +1,5 @@
 import './style.css'
-const outputBox = document.querySelector("output");
+const outputBox = document.querySelector("#output");
 // import { sampleResponse as response } from "./sampleResponse";
 
 export function displayResponse(response) {
