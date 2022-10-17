@@ -128,7 +128,7 @@ body {
 
   background-color: var(--background);
   color: var(--text);
-  font-size: clamp(var(--font-13), 1.5vw, var(--font-15));
+  font-size: clamp(var(--font-13), 2.7vw, var(--font-15));
   line-height: var(--font-25);
   padding: 2rem 0 4rem;
   min-width: 320px;
@@ -164,19 +164,19 @@ h2,
 }
 
 h2 {
-  font-size: clamp(var(--font-16), 3.5vw, var(--font-26));
+  font-size: clamp(var(--font-16), 4.6vw, var(--font-26));
   line-height: var(--font-38);
 }
 
 .bold-number {
-  font-size: clamp(var(--font-16), 3vw, var(--font-22));
+  font-size: clamp(var(--font-16), 4vw, var(--font-22));
   line-height: var(--font-33);
 }
 
 .login {
   color: var(--blue);
   line-height: var(--font-24);
-  font-size: clamp(var(--font-13), 1.5vw, var(--font-16));
+  font-size: clamp(var(--font-13), 3vw, var(--font-16));
 }
 
 .mode-label {
@@ -187,7 +187,7 @@ h2 {
 }
 
 .tiny-heading {
-  font-size: clamp(var(--font-11), 1vw, var(--font-13));
+  font-size: clamp(var(--font-11), 2.3vw, var(--font-13));
   line-height: var(--font-20);
 }
 
@@ -406,6 +406,9 @@ body.dark-mode .mode-container.toggle-light-version {
     overflow: hidden;
   }
 
+  .joined {
+    line-height: var(--font-38);
+  }
 }
 
 @media (min-width: 680px) {
@@ -421,10 +424,6 @@ body.dark-mode .mode-container.toggle-light-version {
   .intro {
     display: flex;
     justify-content: space-between;
-  }
-
-  .joined {
-    line-height: var(--font-38);
   }
 
   .avatar {
